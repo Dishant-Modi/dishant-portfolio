@@ -18,7 +18,7 @@ export const projects = {
     date: "2024",
     type: "Personal Project",
     roles: "Full Stack Developer",
-    url: "",
+    url: "e-doc.infinityfreeapp.com",
     desc: "A full-stack patient scheduling system with a React frontend and a PHP/MySQL backend. Includes custom conflict-detection logic to prevent overlapping appointments, relational schemas for patients and appointments, and PHP-session authentication with role-based access control.",
     stack: ["React.js", "Node.js", "Express.js", "PHP", "MySQL"],
     github: "https://github.com/Dishant-Modi/Patient_Scheduler",
