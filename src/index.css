@@ -419,6 +419,13 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   justify-content: center;
 }
 
+.modal-head {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
 .modal-meta {
   display: flex;
   flex-direction: column;
@@ -428,7 +435,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   text-transform: uppercase;
   color: var(--slate-light);
   letter-spacing: 0.03em;
-  margin-bottom: 20px;
+  padding-top: 6px;
 }
 
 .modal-meta span:first-child { color: var(--slate); }
@@ -438,7 +445,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   font-weight: 900;
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   line-height: 1;
-  margin: 0 0 48px;
+  margin: 0;
 }
 
 .modal-details {
@@ -553,6 +560,33 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   font-size: 0.85rem;
   text-align: center;
   padding: 24px;
+}
+
+.modal-screenshot {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 40px;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-screenshot img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.modal-screenshot-pending {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* ---------- Responsive ---------- */

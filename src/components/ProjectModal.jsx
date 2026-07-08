@@ -56,31 +56,49 @@ export default function ProjectModal({ project, onClose }) {
                 {project.url && (
                   <a href={project.url} target="_blank" rel="noopener">View project ↗</a>
                 )}
-                <a href={project.github} target="_blank" rel="noopener">Visit GitHub repo ↗</a>
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener">Visit GitHub repo ↗</a>
+                )}
               </div>
             </div>
           </div>
 
           <div className="modal-preview">
-            <div className="browser-chrome">
-              <div className="browser-chrome-top">
-                <div className="browser-dots"><span></span><span></span><span></span></div>
-                <div className="browser-addr">
-                  <span className="browser-lock">🔒</span>
-                  <span>{project.url ? project.url.replace(/^https?:\/\//, "") : "preview pending"}</span>
+            {project.previewType === "screenshot" ? (
+              <>
+                <span className="eyebrow-mono">01</span>
+                <div className="modal-screenshot">
+                  {project.screenshot ? (
+                    <img src={project.screenshot} alt={`${project.name} screenshot`} />
+                  ) : (
+                    <div className="modal-screenshot-pending">
+                      <span>// screenshot pending</span>
+                      <span>Add this project's screenshot path in src/data/projects.js</span>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="browser-chrome">
+                <div className="browser-chrome-top">
+                  <div className="browser-dots"><span></span><span></span><span></span></div>
+                  <div className="browser-addr">
+                    <span className="browser-lock">🔒</span>
+                    <span>{project.url ? project.url.replace(/^https?:\/\//, "") : "preview pending"}</span>
+                  </div>
+                </div>
+                <div className="browser-chrome-body">
+                  {project.url ? (
+                    <iframe src={project.url} title={`${project.name} live preview`} loading="lazy" />
+                  ) : (
+                    <div className="preview-pending">
+                      <span>// live preview not deployed yet</span>
+                      <span>Add this project's URL in src/data/projects.js once it's live</span>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="browser-chrome-body">
-                {project.url ? (
-                  <iframe src={project.url} title={`${project.name} live preview`} loading="lazy" />
-                ) : (
-                  <div className="preview-pending">
-                    <span>// live preview not deployed yet</span>
-                    <span>Add this project's URL in src/data/projects.js once it's live</span>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}

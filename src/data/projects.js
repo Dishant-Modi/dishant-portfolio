@@ -5,10 +5,12 @@ export const projects = {
     date: "2025",
     type: "University–Industry Collaboration",
     roles: "Full Stack Developer",
-    url: "", // e.g. "https://resilient-privacy.vercel.app"
+    url: "", // NDA project -- no live URL or public code, screenshot preview only
+    previewType: "screenshot",
+    screenshot: "", // e.g. "/screenshots/resilient-privacy.png" once you share the image
     desc: "A privacy-focused SaaS platform built from the ground up: frontend architecture, backend services, and database integration. Figma designs were converted into reusable, scalable React components with structured state management. RESTful APIs were built with Node.js and Express, and PostgreSQL data models were defined with Sequelize.",
     stack: ["React.js", "Node.js", "Express.js", "PostgreSQL", "Sequelize", "Postman"],
-    github: "https://github.com/Dishant-Modi",
+    github: "", // NDA project -- no public repo to link to
     accent: "#1E7A54",
     accentSoft: "#E4F1EA",
     url_label: "resilient-privacy.app",
