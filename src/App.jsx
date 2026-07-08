@@ -1,34 +1,21 @@
-import { useState } from "react";
-import { projects } from "./data/projects.js";
-import Nav from "./components/Nav.jsx";
-import Hero from "./components/Hero.jsx";
-import WorksGrid from "./components/WorksGrid.jsx";
-import About from "./components/About.jsx";
-import Experience from "./components/Experience.jsx";
-import Skills from "./components/Skills.jsx";
-import Education from "./components/Education.jsx";
-import Contact from "./components/Contact.jsx";
-import Footer from "./components/Footer.jsx";
-import ProjectModal from "./components/ProjectModal.jsx";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Works from "./pages/Works.jsx";
+import WorkDetail from "./pages/WorkDetail.jsx";
+import Contact from "./pages/Contact.jsx";
 
 export default function App() {
-  const [activeProjectKey, setActiveProjectKey] = useState(null);
-  const activeProject = activeProjectKey ? projects[activeProjectKey] : null;
-
   return (
-    <>
-      <Nav />
-      <main id="top">
-        <Hero />
-        <WorksGrid onOpen={setActiveProjectKey} />
-        <About />
-        <Experience />
-        <Skills />
-        <Education />
-        <Contact />
-        <Footer />
-      </main>
-      <ProjectModal project={activeProject} onClose={() => setActiveProjectKey(null)} />
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="works" element={<Works />} />
+        <Route path="works/:slug" element={<WorkDetail />} />
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }

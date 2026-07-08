@@ -1,6 +1,7 @@
 // Add a "url" once each project is deployed to enable the live iframe preview.
 export const projects = {
   privacy: {
+    slug: "resilient-privacy",
     name: "Resilient Privacy",
     date: "2025",
     type: "University–Industry Collaboration",
@@ -16,6 +17,7 @@ export const projects = {
     url_label: "resilient-privacy.app",
   },
   scheduler: {
+    slug: "patient-scheduler",
     name: "Patient Scheduler",
     date: "2024",
     type: "Personal Project",
@@ -29,6 +31,7 @@ export const projects = {
     url_label: "e-doc.infinityfreeapp.com",
   },
   ecommerce: {
+    slug: "e-commerce-website",
     name: "E-Commerce Website",
     date: "2024",
     type: "Personal Project",
@@ -42,3 +45,9 @@ export const projects = {
     url_label: "dishant-ecommerce.vercel.app",
   },
 };
+
+export const projectList = Object.values(projects);
+
+export function getProjectBySlug(slug) {
+  return projectList.find((p) => p.slug === slug);
+}
