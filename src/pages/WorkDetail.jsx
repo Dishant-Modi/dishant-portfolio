@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
-import { getProjectBySlug } from "../data/projects.js";
+import { useParams, Navigate, Link } from "react-router-dom";
+import { getProjectBySlug, projectList } from "../data/projects.js";
+import { site } from "../data/site.js";
 import Button from "../components/Button.jsx";
+import ScaledIframe from "../components/ScaledIframe.jsx";
 
 export default function WorkDetail() {
   const { slug } = useParams();
@@ -13,9 +15,13 @@ export default function WorkDetail() {
 
   if (!project) return <Navigate to="/works" replace />;
 
+  const currentIndex = projectList.findIndex((p) => p.slug === project.slug);
+  const nextIndex = (currentIndex + 1) % projectList.length;
+  const nextProject = projectList[nextIndex];
+
   return (
-    <div className="page">
-      <section className="section">
+    <div className="page" id="top">
+      <section className="section section-flush">
         <Button to="/works">← Back to works</Button>
 
         <div className="detail-head" style={{ marginTop: "32px" }}>
@@ -51,20 +57,18 @@ export default function WorkDetail() {
         </div>
 
         <div className="detail-preview">
+          <span className="eyebrow-mono">01</span>
           {project.previewType === "screenshot" ? (
-            <>
-              <span className="eyebrow-mono">01</span>
-              <div className="detail-screenshot">
-                {project.screenshot ? (
-                  <img src={project.screenshot} alt={`${project.name} screenshot`} />
-                ) : (
-                  <div className="detail-screenshot-pending">
-                    <span>// screenshot pending</span>
-                    <span>Add this project's screenshot path in src/data/projects.js</span>
-                  </div>
-                )}
-              </div>
-            </>
+            <div className="detail-screenshot">
+              {project.screenshot ? (
+                <img src={project.screenshot} alt={`${project.name} screenshot`} />
+              ) : (
+                <div className="detail-screenshot-pending">
+                  <span>// screenshot pending</span>
+                  <span>Add this project's screenshot path in src/data/projects.js</span>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="browser-chrome">
               <div className="browser-chrome-top">
@@ -76,7 +80,7 @@ export default function WorkDetail() {
               </div>
               <div className="browser-chrome-body">
                 {project.url ? (
-                  <iframe src={project.url} title={`${project.name} live preview`} loading="lazy" />
+                  <ScaledIframe src={project.url} title={`${project.name} live preview`} />
                 ) : (
                   <div className="preview-pending">
                     <span>// live preview not deployed yet</span>
@@ -86,6 +90,40 @@ export default function WorkDetail() {
               </div>
             </div>
           )}
+        </div>
+
+        {(project.concept || project.development) && (
+          <div className="case-study">
+            <span className="eyebrow-mono">02</span>
+            {project.concept && (
+              <div className="detail-columns">
+                <span className="detail-col-label">Concept</span>
+                <p className="detail-desc">{project.concept}</p>
+              </div>
+            )}
+            {project.development && (
+              <div className="detail-columns">
+                <span className="detail-col-label">Development</span>
+                <p className="detail-desc">{project.development}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <Link to={`/works/${nextProject.slug}`} className="next-project-link">
+          <div className="detail-head">
+            <div className="detail-meta">
+              <span>{String(nextIndex + 1).padStart(2, "0")}</span>
+              <span>Next Project</span>
+            </div>
+            <h2 className="detail-title">{nextProject.name}</h2>
+          </div>
+        </Link>
+
+        <div className="closing-footer-row" style={{ marginTop: "64px" }}>
+          <span>{site.closing.madeWith}</span>
+          <span>© {new Date().getFullYear()}</span>
+          <a href="#top">Back to top</a>
         </div>
       </section>
     </div>

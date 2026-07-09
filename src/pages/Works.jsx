@@ -6,7 +6,7 @@ import { projectList } from "../data/projects.js";
 export default function Works() {
   return (
     <div className="page">
-      <section className="section">
+      <section className="section section-flush">
         <SectionLabel>Works</SectionLabel>
         <AnimatedText as="h1" text="Things I've built." className="section-title" />
         <div className="works-grid">

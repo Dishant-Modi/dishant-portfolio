@@ -15,9 +15,10 @@ export default function Layout() {
           <Outlet />
         </PageTransition>
       </AnimatePresence>
-      {/* Home builds its own closing section (CTA + big footer), so the
-          compact shared footer only applies to the other routes. */}
-      {location.pathname !== "/" && <Footer />}
+      {/* Home and the work detail pages build their own closing sections
+          (CTA/big footer, next-project + footer row), so the compact shared
+          footer only applies to the remaining routes. */}
+      {location.pathname !== "/" && !location.pathname.startsWith("/works/") && <Footer />}
     </>
   );
 }
