@@ -800,7 +800,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   color: var(--ink);
   line-height: 1.6;
   margin: 0 0 28px;
-  max-width: 760px;
+  max-width: clamp(650px, 340px + 29vw, 900px);
 }
 
 .detail-links {
