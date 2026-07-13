@@ -300,7 +300,80 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   border-bottom: 1px solid var(--border);
 }
 
-/* ---------- Works grid / Project card ---------- */
+/* ---------- Works listing page (headline + numbered list) ---------- */
+.works-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0 0 64px;
+  display: block;
+}
+
+.works-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.works-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 120px;
+}
+
+.works-intro p {
+  color: var(--slate);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.works-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.works-list-row {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  padding: 32px 16px;
+  border-top: 1px solid var(--border);
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.works-list-row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.works-list-row:hover {
+  background: rgba(var(--bg-rgb), 0.5);
+}
+
+.works-list-row:hover .works-list-name {
+  opacity: 0.75;
+}
+
+.works-list-index {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--slate-light);
+  flex-shrink: 0;
+}
+
+.works-list-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  color: var(--ink);
+  transition: opacity 0.2s ease;
+}
+
+/* ---------- Works grid / Project card (reused on Home's Featured Works) ---------- */
 .works-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -904,6 +977,28 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   gap: 8px;
 }
 
+/* For projects with no web app to preview at all (schema/notebook-only
+   work) -- deliberately styled as a real, intentional statement (same
+   weight as the screenshot/browser-chrome blocks) rather than a "pending"
+   placeholder, since there's nothing pending here: it's just not a site. */
+.detail-no-preview {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 60px 40px;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.detail-no-preview span {
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
 /* ---------- Work detail: extended case study (Concept / Development) ---------- */
 .case-study {
   margin-top: 96px;
@@ -941,6 +1036,9 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   .experience-meta { align-items: flex-start; text-align: left; }
   .skills-flat-row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
   .closing-cta { flex-direction: column; }
+  .works-layout { grid-template-columns: 1fr; }
+  .works-intro { position: static; margin-bottom: 16px; }
+  .works-list-row { gap: 16px; padding: 24px 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -26,7 +26,6 @@ export default function WorkDetail() {
 
         <div className="detail-head" style={{ marginTop: "32px" }}>
           <div className="detail-meta">
-            <span>{project.date}</span>
             <span>{project.type.toUpperCase()}</span>
             <span>{project.roles.toUpperCase()}</span>
           </div>
@@ -68,6 +67,10 @@ export default function WorkDetail() {
                   <span>Add this project's screenshot path in src/data/projects.js</span>
                 </div>
               )}
+            </div>
+          ) : project.previewType === "none" ? (
+            <div className="detail-no-preview">
+              <span>No live preview — {project.previewNote}</span>
             </div>
           ) : (
             <div className="browser-chrome">
