@@ -29,56 +29,6 @@
   --border: rgba(242, 244, 241, 0.12);
 }
 
-[data-theme="cobalt"] {
-  --bg: #0B1E3D;
-  --bg-rgb: 11, 30, 61;
-  --bg-raised: #12294F;
-  --ink: #EAF1FF;
-  --slate: #8FA9CC;
-  --slate-light: #5D779C;
-  --border: rgba(234, 241, 255, 0.14);
-}
-
-[data-theme="space"] {
-  --bg: #05060A;
-  --bg-rgb: 5, 6, 10;
-  --bg-raised: #0E1018;
-  --ink: #E8E8F0;
-  --slate: #7A7D91;
-  --slate-light: #4E5164;
-  --border: rgba(232, 232, 240, 0.12);
-}
-
-[data-theme="evergreen"] {
-  --bg: #0E1F17;
-  --bg-rgb: 14, 31, 23;
-  --bg-raised: #16291F;
-  --ink: #E9F4EC;
-  --slate: #7FA98D;
-  --slate-light: #4F7A5F;
-  --border: rgba(233, 244, 236, 0.14);
-}
-
-[data-theme="midnight"] {
-  --bg: #10112B;
-  --bg-rgb: 16, 17, 43;
-  --bg-raised: #191B3E;
-  --ink: #E7E7F7;
-  --slate: #8686B0;
-  --slate-light: #5B5B85;
-  --border: rgba(231, 231, 247, 0.14);
-}
-
-[data-theme="glacier"] {
-  --bg: #EAF4F8;
-  --bg-rgb: 234, 244, 248;
-  --bg-raised: #FFFFFF;
-  --ink: #10202A;
-  --slate: #52737F;
-  --slate-light: #85A2AC;
-  --border: rgba(16, 32, 42, 0.12);
-}
-
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -145,44 +95,41 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .navbar-link:hover,
 .navbar-link.active { opacity: 1; }
 
-/* ---------- Theme switcher ---------- */
-.theme-switcher {
+/* ---------- Theme toggle (sun/moon pill switch) ---------- */
+.theme-toggle {
   position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid #3FA9DB;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
 }
 
-.theme-switcher-trigger {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink);
+.theme-toggle.dark {
+  border-color: #2B3A7A;
 }
 
-.theme-switcher-panel {
+.theme-toggle-thumb {
   position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 20px;
-  background: rgba(var(--bg-rgb), 0.9);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  min-width: 220px;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #3FA9DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
 
-.theme-switcher-panel button {
-  text-align: left;
-  padding: 4px 0;
-  font-size: 0.88rem;
-  color: var(--slate);
-  white-space: nowrap;
-  transition: color 0.2s ease;
-}
-.theme-switcher-panel button:hover { color: var(--ink); }
-.theme-switcher-panel button.active {
-  color: var(--ink);
-  font-weight: 700;
+.theme-toggle.dark .theme-toggle-thumb {
+  background: #33408C;
+  transform: translateX(26px);
 }
 
 /* ---------- Layout / page transitions ---------- */
@@ -881,6 +828,33 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   gap: 28px;
 }
 
+.demo-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.demo-account {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.demo-account-role {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--slate-light);
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.demo-account-creds {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
 .detail-preview {
   border-radius: 10px;
   overflow: hidden;
@@ -1029,7 +1003,6 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   .about-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
   .timeline-item, .edu-item { grid-template-columns: 1fr; gap: 10px; }
   .detail-head, .detail-columns { grid-template-columns: 1fr; gap: 24px; }
-  .theme-switcher-panel { grid-template-columns: 1fr; right: -12px; }
   .experience-layout, .skills-home-grid { grid-template-columns: 1fr; }
   .experience-intro { position: static; }
   .experience-entry { grid-template-columns: 1fr; gap: 12px; }

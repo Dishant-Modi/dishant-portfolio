@@ -1,13 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { themes } from "./themes.js";
 
 const STORAGE_KEY = "portfolio-theme";
 const ThemeContext = createContext(null);
 
 function getInitialTheme() {
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored && themes.some((t) => t.key === stored)) return stored;
-  return themes[0].key;
+  if (stored === "light" || stored === "dark") return stored;
+  return "dark";
 }
 
 export function ThemeProvider({ children }) {
@@ -18,14 +17,12 @@ export function ThemeProvider({ children }) {
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  function setRandomTheme() {
-    const choices = themes.filter((t) => t.key !== theme);
-    const pick = choices[Math.floor(Math.random() * choices.length)];
-    setTheme(pick.key);
+  function toggleTheme() {
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, setRandomTheme, themes }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

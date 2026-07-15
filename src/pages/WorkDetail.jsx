@@ -55,6 +55,20 @@ export default function WorkDetail() {
           </div>
         </div>
 
+        {project.demoAccounts && (
+          <div className="detail-columns">
+            <span className="detail-col-label">Try It Yourself</span>
+            <div className="demo-accounts">
+              {project.demoAccounts.map((acc) => (
+                <div className="demo-account" key={acc.role}>
+                  <span className="demo-account-role">{acc.role}</span>
+                  <span className="demo-account-creds">{acc.email} · {acc.password}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="detail-preview">
           <span className="eyebrow-mono">01</span>
           {project.previewType === "screenshot" ? (
