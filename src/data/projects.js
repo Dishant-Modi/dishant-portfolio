@@ -143,13 +143,16 @@ export const projects = {
     date: "2023",
     type: "Personal Project",
     roles: "Full Stack Developer",
-    url: "", // not deployed yet
+    url: "https://wallpaper-website-project.onrender.com",
     desc: "An early wallpaper download and e-commerce-style site built in PHP, with login, cart, and checkout flows. One of my first full projects — rougher around the edges than later work, but where a lot of the fundamentals came together.",
     stack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/Dishant-Modi/Wallpaper-Website-Project",
+    demoAccounts: [
+      { role: "Demo User", email: "demo@edoc.com", password: "Demo@1234" },
+    ],
     accent: "#B5654A",
     accentSoft: "#F5E4DC",
-    url_label: "preview pending",
+    url_label: "wallpaper-website-project.onrender.com",
   },
 };
 
