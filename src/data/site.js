@@ -6,14 +6,14 @@ export const site = {
   location: "Dallas, TX",
   focusLines: ["FULL-STACK DEVELOPER", "REACT · NODE.JS · POSTGRESQL"],
   heroSub:
-    "React, Node.js, and PostgreSQL, mostly. Currently finishing an M.S. in Information Technology & Management at UT Dallas.",
+    "React, Node.js, and PostgreSQL, mostly. M.S. in Information Technology & Management from UT Dallas.",
   bioTeaser: [
-    "I build things that run in production — React and TypeScript on the frontend, Node.js and Express on the backend, PostgreSQL and MySQL for data.",
-    "Currently finishing an M.S. in Information Technology & Management at UT Dallas, and working as a Teaching Assistant there.",
+    "I'm a full-stack developer who enjoys building things people actually use, not just demos. I recently completed my M.S. in Information Technology & Management at UT Dallas, and since then I've been building out a handful of full-stack projects, from a privacy-focused SaaS platform to a patient scheduling system.",
+    "Most of my work leans full-stack: React and TypeScript on the frontend, Node.js and Express on the backend, PostgreSQL and MySQL underneath. I like owning a project end to end, from the first component to the last database query.",
   ],
   bioFull: [
-    "I work across the entire stack — React and TypeScript on the frontend, Node.js and Express on the backend, PostgreSQL and MySQL for data. Most of what I've built has come from taking a project from an empty repository to something a real user can rely on: architecture, data models, endpoints, and the interface on top of all of it.",
-    "Outside of building, I've spent the last year as a Teaching Assistant at UT Dallas, breaking down spreadsheet modeling concepts for students — which has made me a better communicator about technical work, not just a better builder of it.",
+    "I work across the entire stack, using React and TypeScript on the frontend, Node.js and Express on the backend, PostgreSQL and MySQL for data. Most of what I've built has come from taking a project from an empty repository to something a real user can rely on: architecture, data models, endpoints, and the interface on top of all of it.",
+    "Outside of building, I spent a year as a Teaching Assistant at UT Dallas, breaking down spreadsheet modeling concepts for students. That made me a better communicator about technical work, not just a better builder of it.",
   ],
   skills: [
     {
@@ -109,6 +109,8 @@ function projectToTimelineEntry(project) {
     date: project.date,
     desc: project.desc,
     stack: project.stack,
+    slug: project.slug,
+    accent: project.accent,
   };
 }
 

@@ -169,20 +169,37 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   padding: 40px 48px 80px;
 }
 
+.hero-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--slate);
+}
+
 .hero-name {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.8rem, 8vw, 6.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.01em;
-  margin: 0 0 40px;
+  font-size: clamp(2.25rem, 11vw, 13rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  margin: 0 0 32px;
+  width: 100%;
 }
 
 .hero-focus-lines {
   display: flex;
   flex-wrap: wrap;
-  gap: 48px;
-  margin-bottom: 56px;
+  gap: 32px;
 }
 
 .hero-focus-lines span {
@@ -334,7 +351,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 /* ---------- Works grid / Project card (reused on Home's Featured Works) ---------- */
 .works-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 60px 40px;
 }
 
@@ -398,9 +415,11 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 
 .device-body {
   flex: 1;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: repeating-linear-gradient(
     135deg,
     rgba(0,0,0,0.02),
@@ -408,6 +427,35 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
     transparent 10px,
     transparent 20px
   );
+}
+
+.device-thumbnail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.device-hint-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 21, 15, 0);
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.project-card:hover .device-hint-overlay {
+  opacity: 1;
+  background: rgba(16, 21, 15, 0.5);
+}
+
+.device-hint-overlay .device-hint {
+  color: #fff;
 }
 
 .device-hint {
@@ -594,6 +642,31 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   font-size: 1.8rem;
   margin: 0 0 12px;
   color: var(--ink);
+}
+
+/* ---------- Experience entries that link out to a project detail page ---------- */
+.experience-entry-link {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.experience-entry-link:hover {
+  background: rgba(var(--bg-rgb), 0.5);
+}
+
+.experience-title-arrow {
+  display: inline-block;
+  margin-left: 10px;
+  color: var(--slate);
+  opacity: 0;
+  transform: translate(-4px, 2px);
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.experience-entry-link:hover .experience-title-arrow {
+  opacity: 1;
+  transform: translate(0, 2px);
+  color: var(--accent);
 }
 
 .experience-desc {
@@ -832,6 +905,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   line-height: 1.6;
   margin: 0 0 28px;
   max-width: clamp(650px, 340px + 29vw, 900px);
+  white-space: pre-line;
 }
 
 .detail-links {
@@ -962,6 +1036,46 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   gap: 8px;
 }
 
+/* ---------- Screenshot gallery (reusable, project-agnostic) ---------- */
+.screenshot-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+  margin-top: 96px;
+}
+
+.screenshot-gallery-item {
+  width: 50%;
+  margin: 0;
+}
+
+.screenshot-gallery-item--left { margin-right: auto; }
+.screenshot-gallery-item--right { margin-left: auto; }
+.screenshot-gallery-item--center { margin-left: auto; margin-right: auto; }
+
+.screenshot-gallery-frame {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 40px;
+  display: flex;
+}
+
+.screenshot-gallery-frame img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.screenshot-gallery-item figcaption {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.screenshot-gallery-item--left figcaption { text-align: left; }
+.screenshot-gallery-item--right figcaption { text-align: right; }
+.screenshot-gallery-item--center figcaption { text-align: center; }
+
 /* For projects with no web app to preview at all (schema/notebook-only
    work) -- deliberately styled as a real, intentional statement (same
    weight as the screenshot/browser-chrome blocks) rather than a "pending"
@@ -1004,6 +1118,10 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .next-project-link:hover { opacity: 0.7; }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 1279px) {
+  .works-grid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 900px) {
   .navbar { padding: 18px 24px; flex-wrap: wrap; row-gap: 10px; }
   .hero { padding: 32px 24px 60px; }
@@ -1023,6 +1141,16 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   .works-layout { grid-template-columns: 1fr; }
   .works-intro { position: static; margin-bottom: 16px; }
   .works-list-row { gap: 16px; padding: 24px 8px; }
+  .screenshot-gallery-item {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .screenshot-gallery-item--left figcaption,
+  .screenshot-gallery-item--right figcaption,
+  .screenshot-gallery-item--center figcaption {
+    text-align: left;
+  }
 }
 
 /* At very narrow widths (~375px and below) the logo + 3 nav links + toggle

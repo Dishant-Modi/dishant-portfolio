@@ -4,6 +4,7 @@ import { getProjectBySlug, projectList } from "../data/projects.js";
 import { site } from "../data/site.js";
 import Button from "../components/Button.jsx";
 import ScaledIframe from "../components/ScaledIframe.jsx";
+import ScreenshotGallery from "../components/ScreenshotGallery.jsx";
 
 export default function WorkDetail() {
   const { slug } = useParams();
@@ -84,7 +85,7 @@ export default function WorkDetail() {
             </div>
           ) : project.previewType === "none" ? (
             <div className="detail-no-preview">
-              <span>No live preview — {project.previewNote}</span>
+              <span>No live preview: {project.previewNote}</span>
             </div>
           ) : (
             <div className="browser-chrome">
@@ -108,6 +109,8 @@ export default function WorkDetail() {
             </div>
           )}
         </div>
+
+        <ScreenshotGallery images={project.screenshotGallery} />
 
         {(project.concept || project.development) && (
           <div className="case-study">

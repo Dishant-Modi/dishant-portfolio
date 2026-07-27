@@ -3,7 +3,7 @@ import AnimatedText from "../components/AnimatedText.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import ExperienceEntry from "../components/ExperienceEntry.jsx";
 import { site, experienceTimeline } from "../data/site.js";
-import { projectList } from "../data/projects.js";
+import { getProjectBySlug } from "../data/projects.js";
 
 function chunkPairs(items) {
   const pairs = [];
@@ -11,8 +11,17 @@ function chunkPairs(items) {
   return pairs;
 }
 
+const FEATURED_SLUGS = [
+  "resilient-privacy",
+  "patient-scheduler",
+  "e-commerce-website",
+  "medicine-delivery-app",
+  "nft-marketplace",
+  "wallpaper-website",
+];
+
 export default function Home() {
-  const featured = projectList.slice(0, 2);
+  const featured = FEATURED_SLUGS.map(getProjectBySlug);
   const github = site.contact.links.find((l) => l.label === "GitHub");
   const flatSkills = site.skills.flatMap((group) => group.tags);
   const skillPairs = chunkPairs(flatSkills);
@@ -20,12 +29,15 @@ export default function Home() {
   return (
     <div className="page" id="top">
       <section className="hero">
-        <AnimatedText as="h1" text={site.name} className="hero-name" />
-        <div className="hero-focus-lines">
-          {site.focusLines.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
+        <div className="hero-top-row">
+          <span className="hero-label">Portfolio</span>
+          <div className="hero-focus-lines">
+            {site.focusLines.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </div>
         </div>
+        <AnimatedText as="h1" text={site.name} className="hero-name" />
         <div className="hero-bio-grid">
           {site.bioTeaser.map((p) => (
             <p key={p}>{p}</p>

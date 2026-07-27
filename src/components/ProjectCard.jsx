@@ -14,7 +14,21 @@ export default function ProjectCard({ project }) {
             <span className="device-url">{project.url_label}</span>
           </div>
           <div className="device-body">
-            <span className="device-hint">Click to view case study</span>
+            {project.cardThumbnail ? (
+              <>
+                <img
+                  src={project.cardThumbnail}
+                  alt=""
+                  loading="lazy"
+                  className="device-thumbnail"
+                />
+                <div className="device-hint-overlay">
+                  <span className="device-hint">Click to view case study</span>
+                </div>
+              </>
+            ) : (
+              <span className="device-hint">Click to view case study</span>
+            )}
           </div>
         </div>
       </div>
