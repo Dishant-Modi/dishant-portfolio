@@ -45,6 +45,24 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Sticky-footer layout: #root stretches to fill the viewport, the page
+   transition wrapper (and the .page inside it) grows to fill whatever
+   space isn't taken by the footer, so a short page (e.g. Contact)
+   doesn't leave a phantom scroll of empty space before the footer --
+   pages with content taller than the viewport grow past this floor
+   exactly as before. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-transition {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 a { color: inherit; text-decoration: none; }
 ul { margin: 0; padding: 0; list-style: none; }
 button { font-family: inherit; border: none; background: none; cursor: pointer; }
@@ -146,7 +164,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 /* ---------- Layout / page transitions ---------- */
 .page {
   padding-top: 96px;
-  min-height: 100vh;
+  flex: 1;
 }
 
 /* ---------- Animated text ---------- */
@@ -712,10 +730,20 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .skills-flat-row:first-child { border-top: 1px solid var(--border); }
 
 .skills-flat-row span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--ink);
+}
+
+.skill-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--slate);
 }
 
 /* ---------- Home: closing CTA + big footer ---------- */
@@ -728,6 +756,10 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   margin-bottom: 64px;
 }
 
+.closing-headline-link {
+  display: inline-block;
+}
+
 .closing-headline {
   font-family: var(--font-display);
   font-weight: 800;
@@ -735,6 +767,11 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   line-height: 1.15;
   margin: 0;
   max-width: 760px;
+  transition: opacity 0.2s ease;
+}
+
+.closing-headline-link:hover .closing-headline {
+  opacity: 0.75;
 }
 
 .closing-socials {
@@ -895,8 +932,18 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 }
 
 .detail-stack span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.95rem;
   color: var(--ink);
+}
+
+.detail-stack-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--slate);
 }
 
 .detail-desc {
@@ -1076,6 +1123,29 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .screenshot-gallery-item--right figcaption { text-align: right; }
 .screenshot-gallery-item--center figcaption { text-align: center; }
 
+/* Plain variant: clean grid, no accent-colored frame/chrome */
+.screenshot-gallery--plain {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 32px;
+}
+
+.screenshot-gallery-item--plain {
+  width: auto;
+  margin: 0;
+}
+
+.screenshot-gallery-item--plain img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.screenshot-gallery-item--plain figcaption {
+  text-align: left;
+}
+
 /* For projects with no web app to preview at all (schema/notebook-only
    work) -- deliberately styled as a real, intentional statement (same
    weight as the screenshot/browser-chrome blocks) rather than a "pending"
@@ -1113,9 +1183,26 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   padding-top: 56px;
   margin-top: 96px;
   border-top: 1px solid var(--border);
+}
+
+.next-project-link .detail-meta {
   transition: opacity 0.2s ease;
 }
-.next-project-link:hover { opacity: 0.7; }
+.next-project-link:hover .detail-meta {
+  opacity: 0.7;
+}
+
+.next-project-link .detail-title {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 3px;
+  transition: text-decoration-color 0.25s ease, color 0.25s ease;
+}
+.next-project-link:hover .detail-title {
+  text-decoration-color: var(--accent);
+  color: var(--accent);
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1279px) {
@@ -1150,6 +1237,9 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   .screenshot-gallery-item--right figcaption,
   .screenshot-gallery-item--center figcaption {
     text-align: left;
+  }
+  .screenshot-gallery--plain {
+    grid-template-columns: 1fr;
   }
 }
 

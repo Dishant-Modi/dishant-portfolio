@@ -4,6 +4,7 @@ import ProjectCard from "../components/ProjectCard.jsx";
 import ExperienceEntry from "../components/ExperienceEntry.jsx";
 import { site, experienceTimeline } from "../data/site.js";
 import { getProjectBySlug } from "../data/projects.js";
+import { techIcons } from "../data/techIcons.js";
 
 function chunkPairs(items) {
   const pairs = [];
@@ -79,24 +80,38 @@ export default function Home() {
         <div className="skills-home-grid">
           <h2 className="section-title">Skills</h2>
           <div>
-            {skillPairs.map(([left, right]) => (
-              <div className="skills-flat-row" key={left}>
-                <span>{left}</span>
-                {right && <span>{right}</span>}
-              </div>
-            ))}
+            {skillPairs.map(([left, right]) => {
+              const LeftIcon = techIcons[left];
+              const RightIcon = right ? techIcons[right] : null;
+              return (
+                <div className="skills-flat-row" key={left}>
+                  <span>
+                    {LeftIcon && <LeftIcon className="skill-icon" aria-hidden="true" />}
+                    {left}
+                  </span>
+                  {right && (
+                    <span>
+                      {RightIcon && <RightIcon className="skill-icon" aria-hidden="true" />}
+                      {right}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="closing-cta">
-          <AnimatedText
-            as="h2"
-            text={site.closing.headline}
-            className="closing-headline"
-            mutedLastWords={site.closing.headlineMutedWords}
-          />
+          <Link to="/contact" className="closing-headline-link">
+            <AnimatedText
+              as="h2"
+              text={site.closing.headline}
+              className="closing-headline"
+              mutedLastWords={site.closing.headlineMutedWords}
+            />
+          </Link>
           <div className="closing-socials">
             <p className="closing-socials-label">{site.closing.socialsLabel}</p>
             <div className="closing-socials-list">

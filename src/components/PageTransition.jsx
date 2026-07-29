@@ -19,7 +19,7 @@ export default function PageTransition({ children }) {
       };
 
   return (
-    <motion.div variants={variants} initial="initial" animate="animate" exit="exit">
+    <motion.div className="page-transition" variants={variants} initial="initial" animate="animate" exit="exit">
       {children}
     </motion.div>
   );

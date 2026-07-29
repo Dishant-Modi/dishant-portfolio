@@ -5,6 +5,7 @@ import { site } from "../data/site.js";
 import Button from "../components/Button.jsx";
 import ScaledIframe from "../components/ScaledIframe.jsx";
 import ScreenshotGallery from "../components/ScreenshotGallery.jsx";
+import { techIcons } from "../data/techIcons.js";
 
 export default function WorkDetail() {
   const { slug } = useParams();
@@ -37,9 +38,15 @@ export default function WorkDetail() {
           <div>
             <span className="detail-col-label">Tech Stack</span>
             <div className="detail-stack">
-              {project.stack.map((s) => (
-                <span key={s}>{s}</span>
-              ))}
+              {project.stack.map((s) => {
+                const Icon = techIcons[s];
+                return (
+                  <span key={s}>
+                    {Icon && <Icon className="detail-stack-icon" aria-hidden="true" />}
+                    {s}
+                  </span>
+                );
+              })}
             </div>
           </div>
           <div>
@@ -110,7 +117,7 @@ export default function WorkDetail() {
           )}
         </div>
 
-        <ScreenshotGallery images={project.screenshotGallery} />
+        <ScreenshotGallery images={project.screenshotGallery} variant={project.screenshotGalleryVariant} />
 
         {(project.concept || project.development) && (
           <div className="case-study">
