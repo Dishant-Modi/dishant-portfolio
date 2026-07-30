@@ -42,7 +42,9 @@ export default function WorkDetail() {
                 const Icon = techIcons[s];
                 return (
                   <span key={s}>
-                    {Icon && <Icon className="detail-stack-icon" aria-hidden="true" />}
+                    <span className="detail-stack-icon-slot">
+                      {Icon && <Icon className="detail-stack-icon" aria-hidden="true" />}
+                    </span>
                     {s}
                   </span>
                 );

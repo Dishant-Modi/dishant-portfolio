@@ -86,12 +86,16 @@ export default function Home() {
               return (
                 <div className="skills-flat-row" key={left}>
                   <span>
-                    {LeftIcon && <LeftIcon className="skill-icon" aria-hidden="true" />}
+                    <span className="skill-icon-slot">
+                      {LeftIcon && <LeftIcon className="skill-icon" aria-hidden="true" />}
+                    </span>
                     {left}
                   </span>
                   {right && (
                     <span>
-                      {RightIcon && <RightIcon className="skill-icon" aria-hidden="true" />}
+                      <span className="skill-icon-slot">
+                        {RightIcon && <RightIcon className="skill-icon" aria-hidden="true" />}
+                      </span>
                       {right}
                     </span>
                   )}
