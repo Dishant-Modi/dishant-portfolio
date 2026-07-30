@@ -9,6 +9,7 @@ export const projects = {
     url: "", // NDA project -- no live URL or public code, screenshot preview only
     previewType: "screenshot",
     screenshot: "/screenshots/resilient-privacy/dashboard-home.jpg",
+    screenshotVariant: "plain",
     cardThumbnail: "/screenshots/resilient-privacy/dashboard-home.jpg",
     screenshotGallery: [
       "/screenshots/resilient-privacy/landing-page.jpg",

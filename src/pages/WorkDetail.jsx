@@ -80,7 +80,7 @@ export default function WorkDetail() {
         <div className="detail-preview">
           <span className="eyebrow-mono">01</span>
           {project.previewType === "screenshot" ? (
-            <div className="detail-screenshot">
+            <div className={`detail-screenshot${project.screenshotVariant === "plain" ? " detail-screenshot--plain" : ""}`}>
               {project.screenshot ? (
                 <img src={project.screenshot} alt={`${project.name} screenshot`} />
               ) : (

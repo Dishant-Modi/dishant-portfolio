@@ -1066,6 +1066,12 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   justify-content: center;
 }
 
+.detail-screenshot--plain {
+  background: none;
+  padding: 0;
+  min-height: 0;
+}
+
 .detail-screenshot img {
   width: 100%;
   border-radius: 8px;
